@@ -13,10 +13,11 @@
     "serverless": "^3.26.0"
   },
   "scripts": {
+    "prettier:all": "yarn prettier --write .",
     "start:dynamo": "cd src/dynamo-db/local_dynamo && java -jar DynamoDBLocal.jar -sharedDb"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.109",
-    "prettier": "^2.8.1"
+    "prettier": "2.8.1"
   }
 }
