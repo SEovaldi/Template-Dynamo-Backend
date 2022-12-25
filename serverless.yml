@@ -1,0 +1,55 @@
+﻿service: my-service
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  stage: dev
+
+resources:
+  Resources:
+    MyTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: my-table
+
+functions:
+  createItem:
+    handler: src/create-item.handler
+    events:
+      - http:
+          path: /items
+          method: post
+  getItem:
+    handler: src/get-item.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: get
+  updateItem:
+    handler: src/update-item.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: put
+  deleteItem:
+    handler: src/delete-item.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: delete
+  listItems:
+    handler: src/list-items.handler
+    events:
+      - http:
+          path: /items
+          method: get

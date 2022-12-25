@@ -1,0 +1,22 @@
+{
+  "name": "draft-off-api",
+  "version": "1.0.0",
+  "description": "A BFF API for DraftOff",
+  "main": "index.js",
+  "repository": "https://github.com/SEovaldi/DraftOffAPI.git",
+  "author": "<eovaldis@msu.edu>",
+  "license": "",
+  "private": true,
+  "dependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "aws-sdk": "^2.1282.0",
+    "serverless": "^3.26.0"
+  },
+  "scripts": {
+    "start:dynamo": "cd src/dynamo-db/local_dynamo && java -jar DynamoDBLocal.jar -sharedDb"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.109",
+    "prettier": "^2.8.1"
+  }
+}
