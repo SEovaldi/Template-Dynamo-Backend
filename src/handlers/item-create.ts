@@ -20,6 +20,7 @@ export const handler = async function (
 
   let request: createItemRequest;
   try {
+    // TODO: refactor to only require an item object, move table name to set in file
     // Parse while checking for undefined properties
     request = parseEventBody<createItemRequest>(event.body!);
 

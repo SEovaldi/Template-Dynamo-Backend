@@ -51,7 +51,7 @@ export function buildLambdaResponse(
  * @description Check if an event has a body
  */
 export function eventHasBody(event: APIGatewayProxyEvent): boolean {
-  return !event || !event.body;
+  return event && event.body !== null && event.body !== undefined;
 }
 
 export function allRequiredPropertiesAreNotNull<T extends object>(

@@ -24,7 +24,7 @@ export const handler = async function (
     await dynamo.deleteItem(params);
 
     // return success response
-    return buildLambdaResponse(201, "Item Deleted: ");
+    return buildLambdaResponse(200, "Item Deleted");
   } catch (error: any) {
     console.error(error);
     return buildLambdaResponse(500, error.message);
