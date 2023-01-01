@@ -18,6 +18,12 @@ export class DynamoDBItemService {
     this.dynamoDb = new AWS.DynamoDB(this.options);
   }
 
+  /**
+   * @param  {AWS.DynamoDB.PutItemInput} params AWS.DynamoDB.PutItemInput
+   * @returns Promise<AWS.DynamoDB.PutItemOutput>
+   * @memberof DynamoDBItemService
+   * @description Put an item into a DynamoDB table
+   */
   public async putItem(
     params: AWS.DynamoDB.PutItemInput
   ): Promise<AWS.DynamoDB.PutItemOutput> {
@@ -32,6 +38,12 @@ export class DynamoDBItemService {
     });
   }
 
+  /**
+   * @param  {AWS.DynamoDB.GetItemInput} params AWS.DynamoDB.GetItemInput
+   * @returns Promise<AWS.DynamoDB.GetItemOutput>
+   * @memberof DynamoDBItemService
+   * @description Get an item from a DynamoDB table
+   */
   public async getItem(
     params: AWS.DynamoDB.GetItemInput
   ): Promise<AWS.DynamoDB.GetItemOutput> {
@@ -46,6 +58,12 @@ export class DynamoDBItemService {
     });
   }
 
+  /**
+   * @param  {AWS.DynamoDB.UpdateItemInput} params AWS.DynamoDB.UpdateItemInput
+   * @returns Promise<AWS.DynamoDB.UpdateItemOutput>
+   * @memberof DynamoDBItemService
+   * @description Update an item in a DynamoDB table
+   */
   public async updateItem(
     params: AWS.DynamoDB.UpdateItemInput
   ): Promise<AWS.DynamoDB.UpdateItemOutput> {
@@ -60,6 +78,12 @@ export class DynamoDBItemService {
     });
   }
 
+  /**
+   * @param  {AWS.DynamoDB.DeleteItemInput} params AWS.DynamoDB.DeleteItemInput
+   * @returns Promise<AWS.DynamoDB.DeleteItemOutput>
+   * @memberof DynamoDBItemService
+   * @description Delete an item from a DynamoDB table
+   */
   public async deleteItem(
     params: AWS.DynamoDB.DeleteItemInput
   ): Promise<AWS.DynamoDB.DeleteItemOutput> {
@@ -74,6 +98,12 @@ export class DynamoDBItemService {
     });
   }
 
+  /**
+   * @param  {AWS.DynamoDB.QueryInput} params AWS.DynamoDB.QueryInput
+   * @returns Promise<AWS.DynamoDB.QueryOutput>
+   * @memberof DynamoDBItemService
+   * @description Query items from a DynamoDB table
+   */
   public async query(
     params: AWS.DynamoDB.QueryInput
   ): Promise<AWS.DynamoDB.QueryOutput> {
@@ -88,6 +118,12 @@ export class DynamoDBItemService {
     });
   }
 
+  /**
+   * @param  {AWS.DynamoDB.ScanInput} params AWS.DynamoDB.ScanInput
+   * @returns Promise<AWS.DynamoDB.ScanOutput>
+   * @memberof DynamoDBItemService
+   * @description Scan to retrieve all items from a DynamoDB table
+   */
   public async scan(
     params: AWS.DynamoDB.ScanInput
   ): Promise<AWS.DynamoDB.ScanOutput> {

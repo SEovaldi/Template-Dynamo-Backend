@@ -1,5 +1,11 @@
-import { APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+/**
+ * @param  {string} body JSON string
+ * @returns Typed object
+ * @description Parse a JSON string into a typed object
+ * @throws Error if body is null or undefined
+ */
 export function parseEventBody<T>(body: string): T {
   if (!body) {
     throw new Error(
@@ -17,18 +23,35 @@ export function validateEventBody<T>(body: string, schema: any): T {
   return result.value;
 }
 
+/**
+ * @param  {number} statusCode
+ * @param  {any} body
+ * @returns APIGatewayProxyResult
+ * @description Build a response object for an AWS Lambda function
+ * @throws Error if body is null or undefined
+ */
 export function buildLambdaResponse(
   statusCode: number,
   body: any
 ): APIGatewayProxyResult {
+  if (!body) {
+    throw new Error(
+      "Failed to build Lambda response: response body is null or undefined"
+    );
+  }
   return {
     statusCode,
     body: JSON.stringify(body),
   };
 }
 
-export function eventHasBody(event: any): boolean {
-  return event && event.body;
+/**
+ * @param  {any} event
+ * @returns boolean
+ * @description Check if an event has a body
+ */
+export function eventHasBody(event: APIGatewayProxyEvent): boolean {
+  return !event || !event.body;
 }
 
 export function allRequiredPropertiesAreNotNull<T extends object>(

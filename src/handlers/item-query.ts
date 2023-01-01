@@ -6,8 +6,8 @@ import {
   parseEventBody,
 } from "./handler-helpers";
 
-interface createItemRequest {
-  params: AWS.DynamoDB.PutItemInput;
+interface queryItemsRequest {
+  params: AWS.DynamoDB.QueryInput;
 }
 
 const dynamo = new DynamoDBItemService();
@@ -18,19 +18,16 @@ export const handler = async function (
   if (!eventHasBody(event))
     return buildLambdaResponse(400, "Invalid request: missing event body");
 
-  let request: createItemRequest;
+  let request: queryItemsRequest;
   try {
     // Parse while checking for undefined properties
-    request = parseEventBody<createItemRequest>(event.body!);
+    request = parseEventBody<queryItemsRequest>(event.body!);
 
     // save item
-    await dynamo.putItem(request.params);
+    const result: AWS.DynamoDB.QueryOutput = await dynamo.query(request.params);
 
     // return success response
-    return buildLambdaResponse(
-      201,
-      "Item created: " + JSON.stringify(request.params.Item)
-    );
+    return buildLambdaResponse(200, result.Items);
   } catch (error: any) {
     console.error(error);
     return buildLambdaResponse(500, error.message);

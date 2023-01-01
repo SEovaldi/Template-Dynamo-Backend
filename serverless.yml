@@ -47,33 +47,39 @@ functions:
       - http:
           path: /items
           method: post
-  # getItem:
-  #   handler: src/handlers/item-get.handler
-  #   events:
-  #     - http:
-  #         path: /items/{id}
-  #         method: get
-  # updateItem:
-  #   handler: src/handlers/item-update.handler
-  #   events:
-  #     - http:
-  #         path: /items/{id}
-  #         method: put
-  # deleteItem:
-  #   handler: src/handlers/item-delete.handler
-  #   events:
-  #     - http:
-  #         path: /items/{id}
-  #         method: delete
+  getItem:
+    handler: src/handlers/item-get.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: get
+  updateItem:
+    handler: src/handlers/item-update.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: put
+  deleteItem:
+    handler: src/handlers/item-delete.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: delete
   listItems:
     handler: src/handlers/item-list.handler
     events:
       - http:
-          path: /items/{table}
+          path: /items
           method: get
-  # queryItems:
-  #   handler: src/handlers/item-query.handler
-  #   events:
-  #     - http:
-  #         path: /items/query
-  #         method: post
+  queryItems:
+    handler: src/handlers/item-query.handler
+    events:
+      - http:
+          path: /items/query
+          method: post
+  listTableItems:
+    handler: src/handlers/table-list.handler
+    events:
+      - http:
+          path: /table/{tableName}
+          method: get
