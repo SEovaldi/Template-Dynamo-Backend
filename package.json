@@ -7,14 +7,20 @@
   "author": "<eovaldis@msu.edu>",
   "license": "",
   "private": true,
+  "scripts": {
+    "prettier:all": "yarn prettier --write .",
+    "local-dynamo": "cd src/dynamo-db/local_dynamo && java -jar DynamoDBLocal.jar -sharedDb",
+    "install:dynamo-offline": "sls dynamodb install",
+    "sls:offline": "sls offline start"
+  },
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
     "aws-sdk": "^2.1282.0",
-    "serverless": "^3.26.0"
-  },
-  "scripts": {
-    "prettier:all": "yarn prettier --write .",
-    "start:dynamo": "cd src/dynamo-db/local_dynamo && java -jar DynamoDBLocal.jar -sharedDb"
+    "serverless": "^3.26.0",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^12.0.3",
+    "serverless-plugin-typescript": "^2.1.4",
+    "typescript": "^4.9.4"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.109",

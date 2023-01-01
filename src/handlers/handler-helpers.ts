@@ -34,7 +34,9 @@ export function eventHasBody(event: any): boolean {
 export function allRequiredPropertiesAreNotNull<T extends object>(
   obj: T
 ): { missingProperties: any[]; allRequiredPropsNotNull: boolean } {
-  const missingProperties = Object.keys(obj).filter((key) => obj[key] === null);
+  const missingProperties = (Object.keys(obj) as (keyof T)[]).filter(
+    (key) => key in obj && obj[key] === null
+  );
   return {
     missingProperties,
     allRequiredPropsNotNull: missingProperties.length === 0,

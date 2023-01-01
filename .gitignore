@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+.build
+
 # local dynamo DB
 /src/dynamo-db/local_dynamo
 

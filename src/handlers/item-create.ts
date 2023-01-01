@@ -8,14 +8,12 @@ import {
 } from "./handler-helpers";
 
 interface createItemRequest {
-  tableName: string;
-  item: any;
   params: AWS.DynamoDB.PutItemInput;
 }
 
 const dynamo = new DynamoDBItemService();
 
-export async function createItem(
+export const handler = async function (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> {
   if (!eventHasBody(event))
@@ -24,6 +22,7 @@ export async function createItem(
   let request: createItemRequest;
   try {
     // Parse while checking for undefined properties
+    console.log("Parsing event body: " + event.body);
     request = parseEventBody<createItemRequest>(event.body!);
 
     // checking for null required properties
@@ -36,15 +35,16 @@ export async function createItem(
       );
 
     // SAVE ITEM
+    console.log("Saving item: " + JSON.stringify(request.params.Item));
     await dynamo.putItem(request.params);
 
     // return success response
     return buildLambdaResponse(
       201,
-      "Item created: " + JSON.stringify(request.item)
+      "Item created: " + JSON.stringify(request.params.Item)
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     return buildLambdaResponse(500, error.message);
   }
-}
+};

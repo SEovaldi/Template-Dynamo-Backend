@@ -1,10 +1,28 @@
 ﻿service: my-service
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-plugin-typescript
+
 provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-1
   stage: dev
+  timeout: 10
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: false
+    migration:
+      dir: offline/migrations
 
 resources:
   Resources:
@@ -24,32 +42,38 @@ resources:
 
 functions:
   createItem:
-    handler: src/create-item.handler
+    handler: src/handlers/item-create.handler
     events:
       - http:
           path: /items
           method: post
-  getItem:
-    handler: src/get-item.handler
-    events:
-      - http:
-          path: /items/{id}
-          method: get
-  updateItem:
-    handler: src/update-item.handler
-    events:
-      - http:
-          path: /items/{id}
-          method: put
-  deleteItem:
-    handler: src/delete-item.handler
-    events:
-      - http:
-          path: /items/{id}
-          method: delete
+  # getItem:
+  #   handler: src/handlers/item-get.handler
+  #   events:
+  #     - http:
+  #         path: /items/{id}
+  #         method: get
+  # updateItem:
+  #   handler: src/handlers/item-update.handler
+  #   events:
+  #     - http:
+  #         path: /items/{id}
+  #         method: put
+  # deleteItem:
+  #   handler: src/handlers/item-delete.handler
+  #   events:
+  #     - http:
+  #         path: /items/{id}
+  #         method: delete
   listItems:
-    handler: src/list-items.handler
+    handler: src/handlers/item-list.handler
     events:
       - http:
-          path: /items
+          path: /items/{table}
           method: get
+  # queryItems:
+  #   handler: src/handlers/item-query.handler
+  #   events:
+  #     - http:
+  #         path: /items/query
+  #         method: post

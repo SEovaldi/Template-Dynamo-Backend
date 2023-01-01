@@ -2,9 +2,20 @@ import * as AWS from "aws-sdk";
 
 export class DynamoDBItemService {
   private readonly dynamoDb: AWS.DynamoDB;
+  private options: AWS.DynamoDB.ClientConfiguration = {};
 
   constructor() {
-    this.dynamoDb = new AWS.DynamoDB();
+    if (process.env.IS_OFFLINE) {
+      console.log("Dynamo is running locally");
+      this.options = {
+        region: "localhost",
+        endpoint: "http://localhost:8000",
+        accessKeyId: "DEFAULT_ACCESS_KEY", // needed if you don't have aws credentials at all in env
+        secretAccessKey: "DEFAULT_SECRET", // needed if you don't have aws credentials at all in env
+      };
+    }
+
+    this.dynamoDb = new AWS.DynamoDB(this.options);
   }
 
   public async putItem(
