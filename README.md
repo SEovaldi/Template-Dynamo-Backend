@@ -1,6 +1,6 @@
-# DraftOffAPI
+# Dynamo DB and API Gateway Backend
 
-BFF for DraftOff
+A backend api powered by aws lambda that uses dynamodb as a database.
 
 ## Setup
 
@@ -13,3 +13,7 @@ BFF for DraftOff
 
 - The endpoints expect data to already be in DynamoDB AttributeValue object format
   - to automatically convert your data before sending it, use `AWS.DynamoDB.Converter.marshall(item)` in your project.
+
+## Running Locally
+
+- Run `yarn sls:offline"`

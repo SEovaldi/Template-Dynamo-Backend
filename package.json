@@ -9,7 +9,6 @@
   "private": true,
   "scripts": {
     "prettier:all": "yarn prettier --write .",
-    "local-dynamo": "cd src/dynamo-db/local_dynamo && java -jar DynamoDBLocal.jar -sharedDb",
     "install:dynamo-offline": "sls dynamodb install",
     "sls:offline": "sls offline start"
   },
