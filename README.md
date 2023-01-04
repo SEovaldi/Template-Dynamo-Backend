@@ -17,3 +17,27 @@ A backend api powered by aws lambda that uses dynamodb as a database.
 ## Running Locally
 
 - Run `yarn sls:offline"`
+
+
+### TODO : aws-sdk v3
+```
+import { DynamoDB } from '@aws-sdk/client-dynamodb';
+import { from } from '@aws-sdk/util-dynamodb';
+
+// Set the region to 'localhost' and the endpoint to the port on which the DynamoDB Local server is running
+const client = new DynamoDB({ region: 'localhost', endpoint: 'http://localhost:8000' });
+
+const params = {
+  TableName: 'my-table',
+  Item: from({
+    id: '123',
+    name: 'John',
+    age: 30
+  })
+};
+
+client.putItem(params).promise()
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error));
+
+```
