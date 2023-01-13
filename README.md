@@ -39,5 +39,24 @@ const params = {
 client.putItem(params).promise()
   .then((data) => console.log(data))
   .catch((error) => console.error(error));
+  
+  
+  	"React Functional Component (*__*)": {
+		"scope": "javascriptreact,typescriptreact",
+		"prefix": "_ functional component",
+		"body": [
+			"interface I${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}Props{",
+			"",
+			"}",
+			"",
+			"export const ${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/} = (props: I${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/}Props) => {",
+			"$3",
+			"    return (",
+			"        <div>I am a ${TM_FILENAME_BASE/(.)(.*)/${1:/upcase}$2/} component</div>",
+			"    );",
+			"};"
+		],
+		"description": "Create a new functional component"
+	},
 
 ```
