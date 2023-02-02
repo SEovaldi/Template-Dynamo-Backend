@@ -1,9 +1,9 @@
 {
-  "name": "draft-off-api",
+  "name": "template-dynamo-backend",
   "version": "1.0.0",
-  "description": "A BFF API for DraftOff",
+  "description": "Template: Back end Serverless IAC repo managing a DynamoDB Database",
   "main": "index.js",
-  "repository": "https://github.com/SEovaldi/DraftOffAPI.git",
+  "repository": "https://github.com/SEovaldi/Template-Dynamo-Backend",
   "author": "<eovaldis@msu.edu>",
   "license": "",
   "private": true,

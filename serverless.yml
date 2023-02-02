@@ -20,9 +20,14 @@ custom:
       port: 8000
       inMemory: true
       migrate: true
-      seed: false
+      seed: true
     migration:
       dir: offline/migrations
+    seed:
+      dev:
+        sources:
+          - table: draftees
+            sources: [./offline/seeds/items.json]
 
 resources:
   Resources:
